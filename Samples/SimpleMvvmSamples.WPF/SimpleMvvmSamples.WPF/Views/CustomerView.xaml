@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="SimpleMvvmSamples.WPF.Views.CustomerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimpleMvvmSamples.WPF.Views"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid x:Name="LayoutRoot" Background="White" Height="150" Width="300" 
+          DataContext="{Binding Source={StaticResource Locator}, Path=CustomerViewModel}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Customer Id:" Grid.Row="0" />
+        <TextBox Grid.Row="0" Grid.Column="1" Height="30"
+                 Text="{Binding Path=Model.CustomerId}" />
+        <Label Content="Customer Name:" Grid.Row="1" Grid.Column="0" />
+        <TextBox Grid.Row="1" Grid.Column="1" Height="30"
+                 Text="{Binding Path=Model.CustomerName}" />
+        <Label Content="Customer City:" Grid.Row="2" Grid.Column="0" />
+        <TextBox Grid.Row="2" Grid.Column="1" Height="30"
+                 Text="{Binding Path=Model.City}" />
+        <Button Content="New Customer" Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0"
+                Height="30" Width="100">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <ei:CallMethodAction 
+                            TargetObject="{Binding}"
+                            MethodName="NewCustomer"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+    </Grid>
+</UserControl>
