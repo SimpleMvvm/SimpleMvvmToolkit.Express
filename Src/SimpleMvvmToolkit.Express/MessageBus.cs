@@ -1,6 +1,4 @@
-﻿using System.Dynamic;
-
-namespace SimpleMvvmToolkit.Express
+﻿namespace SimpleMvvmToolkit.Express
 {
     /// <summary>
     /// Facilitates communication among view-models.

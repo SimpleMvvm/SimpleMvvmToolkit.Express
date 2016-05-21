@@ -86,8 +86,9 @@ namespace SimpleMvvmToolkit.Express
             }
             else if (parameter is string)
             {
-                MethodInfo mi = (from m in typeof(T).GetMethods(BindingFlags.Static | BindingFlags.Public)
-                                 where m.Name == "Parse" && m.GetParameters().Count() == 1
+                MethodInfo mi = (from m in typeof(T).GetRuntimeMethods()
+                                 where m.IsPublic && m.IsStatic &&
+                                 m.Name == "Parse" && m.GetParameters().Count() == 1
                                  select m).FirstOrDefault();
                 if (mi != null)
                 {

@@ -58,12 +58,12 @@ namespace SimpleMvvmToolkit.Express
         /// <param name="dest">Destination entity object</param>
         public static void CopyValuesTo<T>(this T source, T dest)
         {
-            var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
+            var properties = typeof(T).GetRuntimeProperties()
                 .Where(p => p.CanRead && p.CanWrite);
 
             foreach (var property in properties)
             {
-                if (property.GetSetMethod() == null) continue;
+                if (property.SetMethod == null) continue;
                 property.SetValue(dest, property.GetValue(source, null), null);
             }
         }
@@ -88,7 +88,7 @@ namespace SimpleMvvmToolkit.Express
         private static int GetObjectHashCode(object item, params string[] excludeProps)
         {
             int hashCode = 0;
-            foreach (var prop in item.GetType().GetProperties())
+            foreach (var prop in item.GetType().GetRuntimeProperties())
             {
                 if (!excludeProps.Contains(prop.Name))
                 {
@@ -117,8 +117,8 @@ namespace SimpleMvvmToolkit.Express
                 throw new ArgumentException($"Type {enumType.Name} is not an enum");
 
             // Project enum values and names
-            var items = from f in enumType.GetFields(BindingFlags.Public | BindingFlags.Static)
-                        where f.IsLiteral
+            var items = from f in enumType.GetRuntimeFields()
+                        where f.IsPublic && f.IsStatic && f.IsLiteral
                         let val = (TEnum)f.GetValue(enumType)
                         let name = f.Name
                         select new EnumItem<TEnum>(val, name);
@@ -147,8 +147,8 @@ namespace SimpleMvvmToolkit.Express
                 throw new ArgumentException($"Type {enumType.Name} is not a valid enum base type");
 
             // Project enum values and names
-            var items = from f in enumType.GetFields(BindingFlags.Public | BindingFlags.Static)
-                        where f.IsLiteral
+            var items = from f in enumType.GetRuntimeFields()
+                        where f.IsPublic && f.IsStatic && f.IsLiteral
                         let val = (TValue)f.GetValue(enumType)
                         let name = f.Name
                         select new EnumItem<TValue>(val, name);
@@ -157,7 +157,7 @@ namespace SimpleMvvmToolkit.Express
 
         private static bool IsEnum(Type enumType)
         {
-            return typeof(Enum).IsAssignableFrom(enumType);
+            return typeof(Enum).GetTypeInfo().IsAssignableFrom(enumType.GetTypeInfo());
         }
 
         private static bool IsValidEnumBase(Type valType)
