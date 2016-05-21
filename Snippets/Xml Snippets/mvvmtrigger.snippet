@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>mvvmtrigger</Title>
+      <Author>Tony</Author>
+      <Description>Insert Blend event trigger / action</Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>mvvmtrigger</Shortcut>
+    </Header>
+    <Snippet>
+      <References>
+      </References>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>event_name</ID>
+          <ToolTip>Event Name</ToolTip>
+          <Default>Click</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>method_name</ID>
+          <ToolTip>Method Name</ToolTip>
+          <Default>MyMethod</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="xml"><![CDATA[<!-- Add reference to Microsoft.Expression.Interactions.dll, System.Windows.Interactivity.dll -->
+<!-- Use mvvmxmlns snippet to add i and ei namespace prefixes -->
+<i:Interaction.Triggers>
+    <i:EventTrigger EventName="$event_name$">
+        <ei:CallMethodAction 
+                TargetObject="{Binding}"
+                MethodName="$method_name$"/>
+    </i:EventTrigger>
+</i:Interaction.Triggers>$end$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

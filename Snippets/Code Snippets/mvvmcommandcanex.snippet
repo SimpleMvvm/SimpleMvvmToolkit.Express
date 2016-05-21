@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Command Property With CanExecute</Title>
+      <Author>Tony Sneed</Author>
+      <Description>Command Property With CanExecute</Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>mvvmcommandcanex</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>ParameterName</ID>
+          <ToolTip>Parameter Name</ToolTip>
+          <Default>object</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>FieldName</ID>
+          <ToolTip>Field Name</ToolTip>
+          <Default>myMethod</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>MethodName</ID>
+          <ToolTip>Method Name</ToolTip>
+          <Default>MyMethod</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[private DelegateCommand<$ParameterName$> $FieldName$Command;
+public DelegateCommand<$ParameterName$> $MethodName$Command
+{
+    get
+    {
+        if ($FieldName$Command == null) $FieldName$Command = 
+            new DelegateCommand<$ParameterName$>($MethodName$, Can$MethodName$);
+        return $FieldName$Command;
+    }
+    private set { $FieldName$Command = value; }
+}]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

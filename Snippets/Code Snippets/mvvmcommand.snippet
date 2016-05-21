@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Command Property</Title>
+      <Author>Tony Sneed</Author>
+      <Description>Command Property</Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>mvvmcommand</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>ParameterName</ID>
+          <ToolTip>Parameter Name</ToolTip>
+          <Default>&lt;object&gt;</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>FieldName</ID>
+          <ToolTip>Field Name</ToolTip>
+          <Default>myMethod</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>MethodName</ID>
+          <ToolTip>Method Name</ToolTip>
+          <Default>MyMethod</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[private DelegateCommand$ParameterName$ $FieldName$Command;
+public DelegateCommand$ParameterName$ $MethodName$Command
+{
+    get { return $FieldName$Command ?? ($FieldName$Command = new DelegateCommand$ParameterName$($MethodName$)); }
+    private set { $FieldName$Command = value; }
+}]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
