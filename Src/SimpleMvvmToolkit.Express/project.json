@@ -1,12 +1,12 @@
 ﻿{
-  "version": "1.0.0",
+  "version": "1.0.0-rc2-24027",
   "title": "Simple MVVM Toolkit Express",
   "description": "Toolkit for building client applications using the Model-View-ViewModel design pattern",
   "language": "en-US",
   "authors": [ "Tony Sneed" ],
   "packOptions": {
     "projectUrl": "http://github.com/SimpleMvvm/SimpleMvvmToolkit.Express",
-    "tags": [ "mvvm", "simplemvvm", "simplemvvmtoolkit" ],
+    "tags": [ "mvvm", "simplemvvm", "simplemvvmtoolkit", "uwp", "netcore", "netcoreapp", "xamarin" ],
     "licenseUrl": "https://raw.githubusercontent.com/SimpleMvvm/SimpleMvvmToolkit.Express/master/LICENSE",
     "iconUrl": "https://raw.githubusercontent.com/SimpleMvvm/SimpleMvvmToolkit.Express/master/Images/simple-icon-sm.png",
     "repository": {
