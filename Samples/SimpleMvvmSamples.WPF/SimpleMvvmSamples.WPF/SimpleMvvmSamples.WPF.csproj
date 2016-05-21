@@ -48,7 +48,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SimpleMvvmToolkit.Express, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SimpleMvvmToolkit.Express.1.0.0-rc2-24027\lib\net46\SimpleMvvmToolkit.Express.dll</HintPath>
+      <HintPath>..\packages\SimpleMvvmToolkit.Express.1.0.0-rc2\lib\net46\SimpleMvvmToolkit.Express.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
