@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FF3A0905-1CB6-4D6A-95C9-9919B17299B0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SimpleMvvmToolkit.Express</RootNamespace>
+    <AssemblyName>SimpleMvvmToolkit.Express</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\SimpleMvvmToolkit.Express.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\SimpleMvvmToolkit.Express\DelegateCommand.cs">
+      <Link>DelegateCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\SimpleMvvmToolkit.Express\GenericDelegateCommand.cs">
+      <Link>GenericDelegateCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\SimpleMvvmToolkit.Express\INotifyable.cs">
+      <Link>INotifyable.cs</Link>
+    </Compile>
+    <Compile Include="..\SimpleMvvmToolkit.Express\MessageBus.cs">
+      <Link>MessageBus.cs</Link>
+    </Compile>
+    <Compile Include="..\SimpleMvvmToolkit.Express\MessageBusCore.cs">
+      <Link>MessageBusCore.cs</Link>
+    </Compile>
+    <Compile Include="..\SimpleMvvmToolkit.Express\ModelBase.cs">
+      <Link>ModelBase.cs</Link>
+    </Compile>
+    <Compile Include="..\SimpleMvvmToolkit.Express\ModelBaseCore.cs">
+      <Link>ModelBaseCore.cs</Link>
+    </Compile>
+    <Compile Include="..\SimpleMvvmToolkit.Express\ModelExtensions.cs">
+      <Link>ModelExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\SimpleMvvmToolkit.Express\NotificationEventArgs.cs">
+      <Link>NotificationEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\SimpleMvvmToolkit.Express\ViewModelBase.cs">
+      <Link>ViewModelBase.cs</Link>
+    </Compile>
+    <Compile Include="..\SimpleMvvmToolkit.Express\ViewModelDetailBase.cs">
+      <Link>ViewModelDetailBase.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.4-beta1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

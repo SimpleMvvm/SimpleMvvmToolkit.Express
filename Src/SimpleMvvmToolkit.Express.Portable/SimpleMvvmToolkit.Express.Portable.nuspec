@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>SimpleMvvmToolkit.Express.Portable</id>
+    <version>1.0.0-rc2</version>
+    <title>Simple MVVM Toolkit Express</title>
+    <authors>Tony Sneed</authors>
+    <owners>Tony Sneed</owners>
+    <licenseUrl>https://raw.githubusercontent.com/SimpleMvvm/SimpleMvvmToolkit.Express/master/LICENSE</licenseUrl>
+    <projectUrl>http://github.com/SimpleMvvm/SimpleMvvmToolkit.Express</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/SimpleMvvm/SimpleMvvmToolkit.Express/master/Images/simple-icon-sm.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Toolkit for building client applications using the Model-View-ViewModel design pattern</description>
+    <language>en-US</language>
+    <tags>mvvm,simplemvvmtoolkit,wpf,uwp,uap,win8,netstandard,xamarin</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="[8.0.4-beta1, )" />
+    </dependencies>
+  </metadata>
+</package>

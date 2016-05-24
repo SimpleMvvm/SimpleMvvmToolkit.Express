@@ -14,8 +14,14 @@
       "url": "git://github.com/SimpleMvvm/SimpleMvvmToolkit.Express"
     }
   },
+  "dependencies": {
+    "Newtonsoft.Json": "8.0.4-beta1"
+  },
   "frameworks": {
     "net46": {
+      "buildOptions": {
+        "define": [ "NET46" ]
+      },
       "dependencies": {
         "System.ComponentModel.Annotations": "4.0.10",
         "System.Linq.Expressions": "4.0.10",
@@ -23,7 +29,6 @@
         "System.Reflection.TypeExtensions": "4.0.0",
         "System.Runtime": "4.0.20",
         "System.Runtime.Serialization.Xml": "4.1.0",
-        "Newtonsoft.Json": "8.0.4-beta1",
         "Microsoft.CSharp": "4.0.0"
       },
       "frameworkAssemblies": {
@@ -31,63 +36,24 @@
       }
     },
     "uap10.0": {
+      "buildOptions": {
+        "define": [ "UAP" ]
+      },
       "dependencies": {
         "Microsoft.CSharp": "4.0.0",
-        "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-        "Newtonsoft.Json": "8.0.4-beta1"
+        "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
       }
     },
-    ".NETPortable,Version=v4.5,Profile=Profile111": {
-      "buildOptions": {
-        "define": [ "PORTABLE111" ]
-      },
-      "dependencies": {
-        "Newtonsoft.Json": "8.0.4-beta1"
-      },
-      "frameworkAssemblies": {
-        "Microsoft.CSharp": "",
-        "System": "",
-        "System.Collections": "",
-        "System.ComponentModel": "",
-        "System.Core": "",
-        "System.Diagnostics.Debug": "",
-        "System.Dynamic.Runtime": "",
-        "System.Globalization": "",
-        "System.IO": "",
-        "System.Linq": "",
-        "System.Linq.Expressions": "",
-        "System.ObjectModel": "",
-        "System.Reflection": "",
-        "System.Reflection.Extensions": "",
-        "System.Resources.ResourceManager": "",
-        "System.Runtime": "",
-        "System.Runtime.Extensions": "",
-        "System.Runtime.Serialization": "",
-        "System.Runtime.Serialization.Xml": "",
-        "System.Runtime.Serialization.Primitives": "",
-        "System.Text.Encoding": "",
-        "System.Text.Encoding.Extensions": "",
-        "System.Text.RegularExpressions": "",
-        "System.Threading": "",
-        "System.Threading.Tasks": "",
-        "System.Xml": "",
-        "System.Xml.Linq": "",
-        "System.Xml.ReaderWriter": "",
-        "System.Xml.XDocument": ""
-      }
-    },
-    "netstandard1.5": {
+    "netstandard1.3": {
       "buildOptions": {
         "define": [
-          "NETSTANDARD15",
+          "NETSTANDARD13",
           "PORTABLE"
         ]
       },
       "dependencies": {
-        "NETStandard.Library": "1.5.0-rc2-24027",
         "System.ComponentModel.Annotations": "4.1.0-rc2-24027",
-        "System.Runtime.Serialization.Xml": "4.1.1-rc2-24027",
-        "Newtonsoft.Json": "8.0.4-beta1"
+        "System.Runtime.Serialization.Xml": "4.1.1-rc2-24027"
       }
     }
   },
