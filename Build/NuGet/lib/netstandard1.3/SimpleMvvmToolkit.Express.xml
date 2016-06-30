@@ -113,13 +113,7 @@
             Singleton of MessageBus.
             </summary>
         </member>
-        <member name="T:SimpleMvvmToolkit.Express.MessageBusCore">
-            <summary>
-            Facilitates communication among view-models.
-            To prevent memory leaks weak references are used.
-            </summary>
-        </member>
-        <member name="M:SimpleMvvmToolkit.Express.MessageBusCore.Register(System.String,SimpleMvvmToolkit.Express.INotifyable)">
+        <member name="M:SimpleMvvmToolkit.Express.MessageBus.Register(System.String,SimpleMvvmToolkit.Express.INotifyable)">
             <summary>
             Register subscriber using a string token, which is usually defined as a constant.
             Subscriber performs internal notifications.
@@ -127,36 +121,33 @@
             <param name="token">String identifying a message token</param>
             <param name="subscriber">Subscriber requesting notifications</param>
         </member>
-        <member name="M:SimpleMvvmToolkit.Express.MessageBusCore.Unregister(System.String,SimpleMvvmToolkit.Express.INotifyable)">
+        <member name="M:SimpleMvvmToolkit.Express.MessageBus.Unregister(System.String,SimpleMvvmToolkit.Express.INotifyable)">
             <summary>
             Remove subscriber from the invocation list
             </summary>
             <param name="token">String identifying a message token</param>
             <param name="subscriber">Subscriber to remove from notifications</param>
         </member>
-        <member name="M:SimpleMvvmToolkit.Express.MessageBusCore.Notify(System.String,System.Object,SimpleMvvmToolkit.Express.NotificationEventArgs)">
+        <member name="M:SimpleMvvmToolkit.Express.MessageBus.Notify(System.String,System.Object,SimpleMvvmToolkit.Express.NotificationEventArgs)">
             <summary>
             Notify registered subscribers.
-            Call is transparently marshalled to UI thread.
             </summary>
             <param name="token">String identifying a message token</param>
             <param name="sender">Sender of notification</param>
             <param name="e">Event args carrying message</param>
         </member>
-        <member name="M:SimpleMvvmToolkit.Express.MessageBusCore.Notify``1(System.String,System.Object,SimpleMvvmToolkit.Express.NotificationEventArgs{``0})">
+        <member name="M:SimpleMvvmToolkit.Express.MessageBus.Notify``1(System.String,System.Object,SimpleMvvmToolkit.Express.NotificationEventArgs{``0})">
             <summary>
             Notify registered subscribers.
-            Call is transparently marshalled to UI thread.
             </summary>
             <typeparam name="TOutgoing">Type used by notifier to send data</typeparam>
             <param name="token">String identifying a message token</param>
             <param name="sender">Sender of notification</param>
             <param name="e">Event args carrying message</param>
         </member>
-        <member name="M:SimpleMvvmToolkit.Express.MessageBusCore.Notify``2(System.String,System.Object,SimpleMvvmToolkit.Express.NotificationEventArgs{``0,``1})">
+        <member name="M:SimpleMvvmToolkit.Express.MessageBus.Notify``2(System.String,System.Object,SimpleMvvmToolkit.Express.NotificationEventArgs{``0,``1})">
             <summary>
             Notify registered subscribers.
-            Call is transparently marshalled to UI thread.
             </summary>
             <typeparam name="TOutgoing">Type used by notifier to send data</typeparam>
             <typeparam name="TIncoming">Type sent by subscriber to send data back to notifier</typeparam>
@@ -164,32 +155,89 @@
             <param name="sender">Sender of notification</param>
             <param name="e">Event args carrying message</param>
         </member>
-        <member name="M:SimpleMvvmToolkit.Express.MessageBusCore.BeginNotify(System.String,System.Object,SimpleMvvmToolkit.Express.NotificationEventArgs)">
+        <member name="M:SimpleMvvmToolkit.Express.MessageBus.BeginNotify(System.String,System.Object,SimpleMvvmToolkit.Express.NotificationEventArgs)">
             <summary>
             Notify registered subscribers asynchronously.
-            Call is not marshalled to UI thread.
             </summary>
             <param name="token">String identifying a message token</param>
             <param name="sender">Sender of notification</param>
             <param name="e">Event args carrying message</param>
         </member>
-        <member name="M:SimpleMvvmToolkit.Express.MessageBusCore.BeginNotify``1(System.String,System.Object,SimpleMvvmToolkit.Express.NotificationEventArgs{``0})">
+        <member name="M:SimpleMvvmToolkit.Express.MessageBus.BeginNotify``1(System.String,System.Object,SimpleMvvmToolkit.Express.NotificationEventArgs{``0})">
             <summary>
             Notify registered subscribers asynchronously.
-            Call is not marshalled to UI thread.
             </summary>
             <typeparam name="TOutgoing">Type used by notifier to send data</typeparam>
             <param name="token">String identifying a message token</param>
             <param name="sender">Sender of notification</param>
             <param name="e">Event args carrying message</param>
         </member>
-        <member name="M:SimpleMvvmToolkit.Express.MessageBusCore.BeginNotify``2(System.String,System.Object,SimpleMvvmToolkit.Express.NotificationEventArgs{``0,``1})">
+        <member name="M:SimpleMvvmToolkit.Express.MessageBus.BeginNotify``2(System.String,System.Object,SimpleMvvmToolkit.Express.NotificationEventArgs{``0,``1})">
             <summary>
             Notify registered subscribers asynchronously.
-            Call is not marshalled to UI thread.
             </summary>
             <typeparam name="TOutgoing">Type used by notifier to send data</typeparam>
             <typeparam name="TIncoming">Type sent by subscriber to send data back to notifier</typeparam>
+            <param name="token">String identifying a message token</param>
+            <param name="sender">Sender of notification</param>
+            <param name="e">Event args carrying message</param>
+        </member>
+        <member name="T:SimpleMvvmToolkit.Express.MessageBusProxy">
+            <summary>
+            Handles communication with the MessageBus.
+            ViewModelBase stores this internally.
+            </summary>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.MessageBusProxy.Register(System.String,System.EventHandler{SimpleMvvmToolkit.Express.NotificationEventArgs})">
+            <summary>
+            Register callback using a string token, which is usually defined as a constant
+            </summary>
+            <param name="token">String identifying a message token</param>
+            <param name="callback">Method to invoke when notified</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.MessageBusProxy.Register``1(System.String,System.EventHandler{SimpleMvvmToolkit.Express.NotificationEventArgs{``0}})">
+            <summary>
+            Register callback using string token and notification with TOutgoing data
+            </summary>
+            <typeparam name="TOutgoing">Type used by notifier to send data</typeparam>
+            <param name="token">String identifying a message token</param>
+            <param name="callback">Method to invoke when notified</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.MessageBusProxy.Register``2(System.String,System.EventHandler{SimpleMvvmToolkit.Express.NotificationEventArgs{``0,``1}})">
+            <summary>
+            Register callback using string token and notification with TOutgoing data
+            and the subscriber's callback with TIncoming data.
+            </summary>
+            <typeparam name="TOutgoing">Type used by notifier to send data</typeparam>
+            <typeparam name="TIncoming">Type sent by subscriber to send data back to notifier</typeparam>
+            <param name="token">String identifying a message token</param>
+            <param name="callback">Method to invoke when notified</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.MessageBusProxy.Unregister(System.String,System.EventHandler{SimpleMvvmToolkit.Express.NotificationEventArgs})">
+            <summary>
+            Remove callback from the invocation list.
+            </summary>
+            <param name="token">String identifying a message token</param>
+            <param name="callback">Method to remove from notifications</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.MessageBusProxy.Unregister``1(System.String,System.EventHandler{SimpleMvvmToolkit.Express.NotificationEventArgs{``0}})">
+            <summary>
+            Remove callback from the invocation list.
+            </summary>
+            <param name="token">String identifying a message token</param>
+            <param name="callback">Method to remove from notifications</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.MessageBusProxy.Unregister``2(System.String,System.EventHandler{SimpleMvvmToolkit.Express.NotificationEventArgs{``0,``1}})">
+            <summary>
+            Remove callback from the invocation list.
+            </summary>
+            <param name="token">String identifying a message token</param>
+            <param name="callback">Method to remove from notifications</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.MessageBusProxy.SimpleMvvmToolkit#Express#INotifyable#Notify(System.String,System.Object,SimpleMvvmToolkit.Express.NotificationEventArgs)">
+            <summary>
+            Notify registered callbacks.
+            </summary>
             <param name="token">String identifying a message token</param>
             <param name="sender">Sender of notification</param>
             <param name="e">Event args carrying message</param>
@@ -214,63 +262,58 @@
             <typeparam name="TResult">Property type</typeparam>
             <param name="property">Property for notification</param>
         </member>
-        <member name="T:SimpleMvvmToolkit.Express.ModelBaseCore">
-            <summary>
-            Base class with support for INotifyPropertyChanged and INotifyDataErrorInfo.
-            </summary>
-        </member>
-        <member name="E:SimpleMvvmToolkit.Express.ModelBaseCore.PropertyChanged">
+        <member name="E:SimpleMvvmToolkit.Express.ModelBase`1.PropertyChanged">
             <summary>
             PropertyChanged event accessible to derived classes
             </summary>
         </member>
-        <member name="E:SimpleMvvmToolkit.Express.ModelBaseCore.PropertyChangedField">
+        <member name="E:SimpleMvvmToolkit.Express.ModelBase`1.PropertyChangedField">
             <summary>
             PropertyChanged field accessible to derived classes.
             </summary>
         </member>
-        <member name="M:SimpleMvvmToolkit.Express.ModelBaseCore.NotifyPropertyChanged(System.String)">
+        <member name="M:SimpleMvvmToolkit.Express.ModelBase`1.NotifyPropertyChanged(System.String)">
             <summary>
             Fire PropertyChanged event.
             </summary>
             <param name="propertyName">Property name</param>
         </member>
-        <member name="E:SimpleMvvmToolkit.Express.ModelBaseCore.ErrorsChanged">
+        <member name="E:SimpleMvvmToolkit.Express.ModelBase`1.ErrorsChanged">
             <summary>
             ErrorsChanged event accessible to derived classes
             </summary>
         </member>
-        <member name="E:SimpleMvvmToolkit.Express.ModelBaseCore.ErrorsChangedField">
+        <member name="E:SimpleMvvmToolkit.Express.ModelBase`1.ErrorsChangedField">
             <summary>
             ErrorsChanged field accessible to derived classes
             </summary>
         </member>
-        <member name="M:SimpleMvvmToolkit.Express.ModelBaseCore.GetErrors(System.String)">
+        <member name="M:SimpleMvvmToolkit.Express.ModelBase`1.GetErrors(System.String)">
             <summary>
             Enumeration for sequence of errors.
             </summary>
             <param name="propertyName">Property name</param>
             <returns>Sequence of errors.</returns>
         </member>
-        <member name="P:SimpleMvvmToolkit.Express.ModelBaseCore.HasErrors">
+        <member name="P:SimpleMvvmToolkit.Express.ModelBase`1.HasErrors">
             <summary>
             Returns true if errors list is not empty.
             </summary>
         </member>
-        <member name="M:SimpleMvvmToolkit.Express.ModelBaseCore.AddError(System.String,System.String)">
+        <member name="M:SimpleMvvmToolkit.Express.ModelBase`1.AddError(System.String,System.String)">
             <summary>
             Add error to the list.
             </summary>
             <param name="propertyName">Property name</param>
             <param name="error">Validation error</param>
         </member>
-        <member name="M:SimpleMvvmToolkit.Express.ModelBaseCore.RemoveError(System.String)">
+        <member name="M:SimpleMvvmToolkit.Express.ModelBase`1.RemoveError(System.String)">
             <summary>
             Remove error from the list.
             </summary>
             <param name="propertyName">Property name</param>
         </member>
-        <member name="M:SimpleMvvmToolkit.Express.ModelBaseCore.NotifyErrorsChanged(System.String)">
+        <member name="M:SimpleMvvmToolkit.Express.ModelBase`1.NotifyErrorsChanged(System.String)">
             <summary>
             Fire ErrorsChanged event.
             </summary>
@@ -454,6 +497,188 @@
             </summary>
             <typeparam name="TViewModel">Class inheriting from ViewModelBase</typeparam>
         </member>
+        <member name="F:SimpleMvvmToolkit.Express.ViewModelBase`1.CurrentMessageBus">
+            <summary>
+            MessageBus for communication among view models.
+            </summary>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.#ctor">
+            <summary>
+            Constructor invoked by derived classes.
+            </summary>
+        </member>
+        <member name="E:SimpleMvvmToolkit.Express.ViewModelBase`1.PropertyChanged">
+            <summary>
+            PropertyChanged event accessible to dervied classes.
+            </summary>
+        </member>
+        <member name="F:SimpleMvvmToolkit.Express.ViewModelBase`1.PropertyChangedField">
+            <summary>
+            PropertyChanged field accessible to dervied classes.
+            </summary>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.NotifyPropertyChanged``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Allows you to specify a lambda for notify property changed
+            </summary>
+            <typeparam name="TResult">Property type</typeparam>
+            <param name="property">Property for notification</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.NotifyPropertyChanged(System.String)">
+            <summary>
+            Fire PropertyChanged event.
+            </summary>
+            <param name="propertyName">Property name</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.Notify(System.EventHandler{SimpleMvvmToolkit.Express.NotificationEventArgs},SimpleMvvmToolkit.Express.NotificationEventArgs)">
+            <summary>
+            Fire a notification event, which is transparently marshalled
+            to the UI thread.
+            </summary>
+            <param name="handler">Notification event</param>
+            <param name="e">Notification message</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.Notify``1(System.EventHandler{SimpleMvvmToolkit.Express.NotificationEventArgs{``0}},SimpleMvvmToolkit.Express.NotificationEventArgs{``0})">
+            <summary>
+            Fire a notification event, which is transparently marshalled
+            to the UI thread.
+            </summary>
+            <typeparam name="TOutgoing">Outgoing data type</typeparam>
+            <param name="handler">Notification event</param>
+            <param name="e">Notification message</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.Notify``2(System.EventHandler{SimpleMvvmToolkit.Express.NotificationEventArgs{``0,``1}},SimpleMvvmToolkit.Express.NotificationEventArgs{``0,``1})">
+            <summary>
+            Fire a notification event, which is transparently marshalled
+            to the UI thread.
+            </summary>
+            <typeparam name="TOutgoing">Outgoing data type</typeparam>
+            <typeparam name="TIncoming">Incoming data type</typeparam>
+            <param name="handler">Notification event</param>
+            <param name="e">Notification message</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.RegisterToReceiveMessages(System.String,System.EventHandler{SimpleMvvmToolkit.Express.NotificationEventArgs})">
+            <summary>
+            Register callback using a string token, which is usually defined as a constant.
+            </summary>
+            <para>
+            There is no need to unregister because receivers are allowed to be garbage collected.
+            </para>
+            <param name="token">String identifying a message token</param>
+            <param name="callback">Method to invoke when notified</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.RegisterToReceiveMessages``1(System.String,System.EventHandler{SimpleMvvmToolkit.Express.NotificationEventArgs{``0}})">
+            <summary>
+            Register callback using string token and notification with TOutgoing data.
+            </summary>
+            <para>
+            There is no need to unregister because receivers are allowed to be garbage collected.
+            </para>
+            <typeparam name="TOutgoing">Type used by notifier to send data</typeparam>
+            <param name="token">String identifying a message token</param>
+            <param name="callback">Method to invoke when notified</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.RegisterToReceiveMessages``2(System.String,System.EventHandler{SimpleMvvmToolkit.Express.NotificationEventArgs{``0,``1}})">
+            <summary>
+            Register callback using string token and notification with TOutgoing data
+            and the subscriber's callback with TIncoming data.
+            </summary>
+            <para>
+            There is no need to unregister because receivers are allowed to be garbage collected.
+            </para>
+            <typeparam name="TOutgoing">Type used by notifier to send data</typeparam>
+            <typeparam name="TIncoming">Type sent by subscriber to send data back to notifier</typeparam>
+            <param name="token">String identifying a message token</param>
+            <param name="callback">Method to invoke when notified</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.UnregisterToReceiveMessages(System.String,System.EventHandler{SimpleMvvmToolkit.Express.NotificationEventArgs})">
+            <summary>
+            Unregister callback using a string token, which is usually defined as a constant.
+            </summary>
+            <para>
+            This is optional because registered receivers are allowed to be garbage collected.
+            </para>
+            <param name="token">String identifying a message token</param>
+            <param name="callback">Method to invoke when notified</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.UnregisterToReceiveMessages``1(System.String,System.EventHandler{SimpleMvvmToolkit.Express.NotificationEventArgs{``0}})">
+            <summary>
+            Unregister callback using string token and notification with TOutgoing data.
+            </summary>
+            <para>
+            This is optional because registered receivers are allowed to be garbage collected.
+            </para>
+            <typeparam name="TOutgoing">Type used by notifier to send data</typeparam>
+            <param name="token">String identifying a message token</param>
+            <param name="callback">Method to invoke when notified</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.UnregisterToReceiveMessages``2(System.String,System.EventHandler{SimpleMvvmToolkit.Express.NotificationEventArgs{``0,``1}})">
+            <summary>
+            Unregister callback using string token and notification with TOutgoing data
+            and the subscriber's callback with TIncoming data.
+            </summary>
+            <para>
+            This is optional because registered receivers are allowed to be garbage collected.
+            </para>
+            <typeparam name="TOutgoing">Type used by notifier to send data</typeparam>
+            <typeparam name="TIncoming">Type sent by subscriber to send data back to notifier</typeparam>
+            <param name="token">String identifying a message token</param>
+            <param name="callback">Method to invoke when notified</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.SendMessage(System.String,SimpleMvvmToolkit.Express.NotificationEventArgs)">
+            <summary>
+            Notify registered subscribers.
+            Call is transparently marshalled to UI thread.
+            </summary>
+            <param name="token">String identifying a message token</param>
+            <param name="e">Event args carrying message</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.SendMessage``1(System.String,SimpleMvvmToolkit.Express.NotificationEventArgs{``0})">
+            <summary>
+            Notify registered subscribers.
+            Call is transparently marshalled to UI thread.
+            </summary>
+            <typeparam name="TOutgoing">Type used by notifier to send data</typeparam>
+            <param name="token">String identifying a message token</param>
+            <param name="e">Event args carrying message</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.SendMessage``2(System.String,SimpleMvvmToolkit.Express.NotificationEventArgs{``0,``1})">
+            <summary>
+            Notify registered subscribers.
+            Call is transparently marshalled to UI thread.
+            </summary>
+            <typeparam name="TOutgoing">Type used by notifier to send data</typeparam>
+            <typeparam name="TIncoming">Type sent by subscriber to send data back to notifier</typeparam>
+            <param name="token">String identifying a message token</param>
+            <param name="e">Event args carrying message</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.BeginSendMessage(System.String,SimpleMvvmToolkit.Express.NotificationEventArgs)">
+            <summary>
+            Notify registered subscribers asynchronously.
+            Call is not marshalled to UI thread.
+            </summary>
+            <param name="token">String identifying a message token</param>
+            <param name="e">Event args carrying message</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.BeginSendMessage``1(System.String,SimpleMvvmToolkit.Express.NotificationEventArgs{``0})">
+            <summary>
+            Notify registered subscribers asynchronously.
+            Call is not marshalled to UI thread.
+            </summary>
+            <typeparam name="TOutgoing">Type used by notifier to send data</typeparam>
+            <param name="token">String identifying a message token</param>
+            <param name="e">Event args carrying message</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelBase`1.BeginSendMessage``2(System.String,SimpleMvvmToolkit.Express.NotificationEventArgs{``0,``1})">
+            <summary>
+            Notify registered subscribers asynchronously.
+            Call is not marshalled to UI thread.
+            </summary>
+            <typeparam name="TOutgoing">Type used by notifier to send data</typeparam>
+            <typeparam name="TIncoming">Type sent by subscriber to send data back to notifier</typeparam>
+            <param name="token">String identifying a message token</param>
+            <param name="e">Event args carrying message</param>
+        </member>
         <member name="T:SimpleMvvmToolkit.Express.ViewModelDetailBase`2">
             <summary>
             Base class for detail view-models. Also provides support for IEditableDataObject.
@@ -516,6 +741,24 @@
             <summary>
             Entity has been changed while editing.
             </summary>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelDetailBase`2.AssociateProperties``2(System.Linq.Expressions.Expression{System.Func{`1,``0}},System.Linq.Expressions.Expression{System.Func{`0,``1}})">
+            <summary>
+            Propagates changes from model property to view-model property.
+            </summary>
+            <typeparam name="TModelResult">Model property type</typeparam>
+            <typeparam name="TViewModelResult">View-model property type</typeparam>
+            <param name="modelProperty">Model property</param>
+            <param name="viewModelProperty">View-model property</param>
+        </member>
+        <member name="M:SimpleMvvmToolkit.Express.ViewModelDetailBase`2.UnAssociateProperties``2(System.Linq.Expressions.Expression{System.Func{`1,``0}},System.Linq.Expressions.Expression{System.Func{`0,``1}})">
+            <summary>
+            Unsubscribe from changes to model property.
+            </summary>
+            <typeparam name="TModelResult">Model property type</typeparam>
+            <typeparam name="TViewModelResult">View-model property type</typeparam>
+            <param name="modelProperty">Model property</param>
+            <param name="viewModelProperty">View-model property</param>
         </member>
     </members>
 </doc>

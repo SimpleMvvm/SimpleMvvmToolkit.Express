@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>SimpleMvvmToolkit.Express.Portable</id>
-    <version>1.0.0-rc2</version>
+    <version>1.0.0</version>
     <title>Simple MVVM Toolkit Express</title>
     <authors>Tony Sneed</authors>
     <owners>Tony Sneed</owners>
@@ -14,7 +14,7 @@
     <language>en-US</language>
     <tags>mvvm,simplemvvmtoolkit,wpf,uwp,uap,win8,netstandard,xamarin</tags>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="[8.0.4-beta1, )" />
+      <dependency id="Newtonsoft.Json" version="[9.0.1, )" />
     </dependencies>
   </metadata>
 </package>

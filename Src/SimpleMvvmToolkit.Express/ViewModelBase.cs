@@ -18,10 +18,9 @@ namespace SimpleMvvmToolkit.Express
         /// <summary>
         /// Constructor invoked by derived classes.
         /// </summary>
-        /// <param name="messageBus">MessageBus for communication among view models.</param>
-        protected ViewModelBase(MessageBus messageBus)
+        protected ViewModelBase()
         {
-            CurrentMessageBus = messageBus;
+            CurrentMessageBus = MessageBus.Default;
         }
 
         /// <summary>

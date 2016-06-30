@@ -33,6 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\SimpleMvvmToolkit.Express.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\SimpleMvvmToolkit.Express\DelegateCommand.cs">

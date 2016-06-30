@@ -19,15 +19,6 @@ namespace SimpleMvvmToolkit.Express
         where TModel : class, INotifyPropertyChanged
     {
         /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="messageBus">MessageBus for communication among view models.</param>
-        protected ViewModelDetailBase(MessageBus messageBus) 
-            : base(messageBus)
-        {
-        }
-
-        /// <summary>
         /// Data entity accessible to derived classes.
         /// </summary>
         protected TModel ModelField;
