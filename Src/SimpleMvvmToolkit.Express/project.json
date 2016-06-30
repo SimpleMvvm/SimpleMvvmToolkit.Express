@@ -15,7 +15,7 @@
     }
   },
   "dependencies": {
-    "Newtonsoft.Json": "8.0.4-beta1"
+    "Newtonsoft.Json": "9.0.1"
   },
   "frameworks": {
     "net46": {
@@ -51,9 +51,10 @@
           "PORTABLE"
         ]
       },
+      "imports": "netcore50",
       "dependencies": {
-        "System.ComponentModel.Annotations": "4.1.0-rc2-24027",
-        "System.Runtime.Serialization.Xml": "4.1.1-rc2-24027"
+        "System.ComponentModel": "4.0.1",
+        "System.Runtime.Serialization.Xml": "4.1.1"
       }
     }
   },

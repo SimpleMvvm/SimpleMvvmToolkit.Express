@@ -47,14 +47,11 @@
     <Compile Include="..\SimpleMvvmToolkit.Express\MessageBus.cs">
       <Link>MessageBus.cs</Link>
     </Compile>
-    <Compile Include="..\SimpleMvvmToolkit.Express\MessageBusCore.cs">
-      <Link>MessageBusCore.cs</Link>
+    <Compile Include="..\SimpleMvvmToolkit.Express\MessageBusProxy.cs">
+      <Link>MessageBusProxy.cs</Link>
     </Compile>
     <Compile Include="..\SimpleMvvmToolkit.Express\ModelBase.cs">
       <Link>ModelBase.cs</Link>
-    </Compile>
-    <Compile Include="..\SimpleMvvmToolkit.Express\ModelBaseCore.cs">
-      <Link>ModelBaseCore.cs</Link>
     </Compile>
     <Compile Include="..\SimpleMvvmToolkit.Express\ModelExtensions.cs">
       <Link>ModelExtensions.cs</Link>
@@ -71,13 +68,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.4-beta1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Linq.Expressions;
+
+// Alias for property dictionary
+using PropertyDictionary = System.Collections.Generic.Dictionary<string, System.ComponentModel.PropertyChangedEventHandler>;
 
 namespace SimpleMvvmToolkit.Express
 {
@@ -14,6 +18,15 @@ namespace SimpleMvvmToolkit.Express
         : ViewModelBase<TViewModel>, IEditableObject
         where TModel : class, INotifyPropertyChanged
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="messageBus">MessageBus for communication among view models.</param>
+        protected ViewModelDetailBase(MessageBus messageBus) 
+            : base(messageBus)
+        {
+        }
+
         /// <summary>
         /// Data entity accessible to derived classes.
         /// </summary>
@@ -191,5 +204,82 @@ namespace SimpleMvvmToolkit.Express
                 return false;
             }
         }
+
+        // Handler for associate properties
+        private readonly Dictionary<string, PropertyDictionary> _assocPropsHandlers
+            = new Dictionary<string, PropertyDictionary>();
+
+        /// <summary>
+        /// Propagates changes from model property to view-model property.
+        /// </summary>
+        /// <typeparam name="TModelResult">Model property type</typeparam>
+        /// <typeparam name="TViewModelResult">View-model property type</typeparam>
+        /// <param name="modelProperty">Model property</param>
+        /// <param name="viewModelProperty">View-model property</param>
+        protected virtual void AssociateProperties<TModelResult, TViewModelResult>
+            (Expression<Func<TModel, TModelResult>> modelProperty,
+             Expression<Func<TViewModel, TViewModelResult>> viewModelProperty)
+        {
+            // Convert expressions to a property names
+            string modelPropertyName = ((MemberExpression)modelProperty.Body).Member.Name;
+            string viewModelPropertyName = ((MemberExpression)viewModelProperty.Body).Member.Name;
+
+            // Get handlers
+            if (!_assocPropsHandlers.ContainsKey(modelPropertyName))
+                _assocPropsHandlers.Add(modelPropertyName, new PropertyDictionary());
+            var handlers = _assocPropsHandlers[modelPropertyName];
+
+            // Propagate model to view-model property change
+            PropertyChangedEventHandler handler = (s, ea) =>
+            {
+                if (ea.PropertyName == modelPropertyName)
+                {
+                    NotifyPropertyChanged(viewModelPropertyName);
+                }
+            };
+
+            // Add handler to property changed event
+            Model.PropertyChanged += handler;
+
+            // Add handler to handlers list
+            handlers.Add(viewModelPropertyName, handler);
+        }
+
+        /// <summary>
+        /// Unsubscribe from changes to model property.
+        /// </summary>
+        /// <typeparam name="TModelResult">Model property type</typeparam>
+        /// <typeparam name="TViewModelResult">View-model property type</typeparam>
+        /// <param name="modelProperty">Model property</param>
+        /// <param name="viewModelProperty">View-model property</param>
+        protected virtual void UnAssociateProperties<TModelResult, TViewModelResult>
+            (Expression<Func<TModel, TModelResult>> modelProperty,
+             Expression<Func<TViewModel, TViewModelResult>> viewModelProperty)
+        {
+            // Convert expressions to a property names
+            string modelPropertyName = ((MemberExpression)modelProperty.Body).Member.Name;
+            string viewModelPropertyName = ((MemberExpression)viewModelProperty.Body).Member.Name;
+
+            // Get handlers
+            PropertyDictionary handlers;
+            if (_assocPropsHandlers.TryGetValue(modelPropertyName, out handlers))
+            {
+                // Get handler
+                PropertyChangedEventHandler handler;
+                if (handlers.TryGetValue(viewModelPropertyName, out handler))
+                {
+                    // Remove handler from property changed event
+                    Model.PropertyChanged -= handler;
+
+                    // Remove handlers from handlers list
+                    handlers.Remove(viewModelPropertyName);
+
+                    // Remove key if no handlers
+                    if (handlers.Count == 0) _assocPropsHandlers.Remove(modelPropertyName);
+                }
+
+            }
+        }
+
     }
 }
