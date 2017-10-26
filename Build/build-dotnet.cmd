@@ -1,1 +1,0 @@
-dotnet pack ../src/SimpleMvvmToolkit.Express -o .
