@@ -1,15 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3A1CFEC2-818F-4257-BE74-500887B1A9D9}"
 	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
 		NuGet.Config = NuGet.Config
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SimpleMvvmToolkit.Express", "SimpleMvvmToolkit.Express\SimpleMvvmToolkit.Express.xproj", "{8073FF79-D552-4C54-A27C-2467B991760F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleMvvmToolkit.Express", "SimpleMvvmToolkit.Express\SimpleMvvmToolkit.Express.csproj", "{8073FF79-D552-4C54-A27C-2467B991760F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMvvmToolkit.Express.Portable", "SimpleMvvmToolkit.Express.Portable\SimpleMvvmToolkit.Express.Portable.csproj", "{FF3A0905-1CB6-4D6A-95C9-9919B17299B0}"
 EndProject
@@ -30,5 +29,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3644FA0E-1919-4C9C-BD08-2B6B8064D754}
 	EndGlobalSection
 EndGlobal
